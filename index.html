@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little World ❤️</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Georgia,serif;
+background:linear-gradient(135deg,#dceeff,#fff,#c5ddff);
+color:#24476d;
+text-align:center;
+min-height:100vh;
+}
+
+.container{
+max-width:600px;
+margin:auto;
+padding:25px 18px;
+}
+
+h1{color:#245b99;font-size:30px}
+h2{color:#326da8}
+p{line-height:1.8}
+
+.section{
+display:none;
+background:rgba(255,255,255,.9);
+padding:25px 18px;
+margin:25px 0;
+border-radius:22px;
+box-shadow:0 5px 20px #8ab7e455;
+animation:appear .8s ease;
+}
+
+.section.active{display:block}
+
+@keyframes appear{
+from{opacity:0;transform:translateY(15px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+button{
+background:#4386c8;
+color:white;
+border:none;
+padding:13px 23px;
+border-radius:30px;
+font-size:16px;
+margin:12px 5px;
+cursor:pointer;
+box-shadow:0 4px 10px #9bbbdc;
+}
+
+button:hover{background:#245b99}
+
+.gift{
+font-size:90px;
+cursor:pointer;
+animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+50%{transform:translateY(-12px)}
+}
+
+.letter{
+background:#f4f9ff;
+border:1px solid #a8cbed;
+border-radius:15px;
+padding:20px;
+text-align:left;
+line-height:2;
+white-space:pre-line;
+}
+
+.music-icon{font-size:65px}
+
+.balloon-area{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+margin:25px 0;
+}
+
+.balloon{
+font-size:75px;
+cursor:pointer;
+display:inline-block;
+transition:.3s;
+}
+
+.balloon:hover{transform:translateY(-12px)}
+
+.popped{
+transform:scale(0);
+opacity:0;
+pointer-events:none;
+}
+
+.wish{
+display:none;
+background:#e7f3ff;
+padding:15px;
+margin:12px 0;
+border-radius:15px;
+animation:appear .7s ease;
+}
+
+.cake{font-size:110px}
+
+.candles{
+font-size:40px;
+display:flex;
+justify-content:center;
+gap:15px;
+margin:20px;
+}
+
+.flame{
+display:inline-block;
+animation:flicker .6s infinite alternate;
+}
+
+@keyframes flicker{
+from{transform:scale(1) rotate(-5deg)}
+to{transform:scale(1.15) rotate(5deg)}
+}
+
+.smoke{
+display:inline-block;
+font-size:35px;
+animation:smoke 1.5s forwards;
+}
+
+@keyframes smoke{
+0%{opacity:1;transform:translateY(0)}
+100%{opacity:0;transform:translateY(-45px)}
+}
+
+.footer{
+padding:25px;
+color:#52769b;
+}
+
+input[type=file]{
+max-width:100%;
+margin:15px auto;
+padding:10px;
+background:#e7f3ff;
+border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HOME -->
+
+<div id="home" class="section active">
+<h1>Welcome to Our Little World ❤️</h1>
+<p>A little surprise is waiting for you...</p>
+<div class="gift" onclick="openLetter()">🎁</div>
+<p>Tap the Gift to Open Your Surprise</p>
+<button onclick="openLetter()">Open Your Gift ❤️</button>
+</div>
+
+<!-- LOVE LETTER -->
+
+<div id="letter" class="section">
+<h1>💌 A Letter For You</h1>
+
+<div class="letter">
+My Dear Love ❤️,
+
+Happy Birthday to the most special person in my life!
+
+I wish your life is always filled with happiness,
+success, peace and beautiful moments.
+
+May all your dreams come true.
+May you achieve everything you wish for.
+
+Thank you for being a beautiful part of my life.
+
+No matter what happens,
+I always wish to see you happy.
+
+With lots of love,
+Your Special Person ❤️
+</div>
+
+<button onclick="openMusic()">Next Surprise 🎵</button>
+</div>
+
+<!-- MUSIC -->
+
+<div id="music" class="section">
+<h1>🎵 Our Special Song</h1>
+<div class="music-icon">🎧💙</div>
+
+<p>Choose Your Favourite Song ❤️</p>
+
+<input type="file" id="songFile" accept="audio/*">
+
+<p id="songName">No song selected</p>
+
+<audio id="song" controls loop style="width:100%"></audio>
+
+<button onclick="playSong()">▶️ Play Song</button>
+<button onclick="pauseSong()">⏸️ Pause Song</button>
+
+<p>Enjoy this beautiful moment ❤️</p>
+
+<button onclick="openBalloons()">Next Surprise 🎈</button>
+</div>
+
+<!-- BALLOONS -->
+
+<div id="balloons" class="section">
+<h1>🎈 Four Magical Wishes</h1>
+
+<p>Four balloons, four beautiful wishes. Tap each balloon!</p>
+
+<div class="balloon-area">
+
+<span class="balloon" id="b1" onclick="popBalloon(1)">🎈</span>
+<span class="balloon" id="b2" onclick="popBalloon(2)">🎈</span>
+<span class="balloon" id="b3" onclick="popBalloon(3)">🎈</span>
+<span class="balloon" id="b4" onclick="popBalloon(4)">🎈</span>
+
+</div>
+
+<div id="w1" class="wish">
+<h2>🌟 Career Success</h2>
+May you get your dream job and reach great heights!
+</div>
+
+<div id="w2" class="wish">
+<h2>🚀 Your Dreams</h2>
+May every dream in your heart become reality!
+</div>
+
+<div id="w3" class="wish">
+<h2>💙 Happiness</h2>
+May your life be filled with happiness and smiles!
+</div>
+
+<div id="w4" class="wish">
+<h2>❤️ Our Beautiful Future</h2>
+May our future be filled with love and togetherness!
+</div>
+
+<p id="balloonMessage"></p>
+
+<button id="cakeNext" style="display:none" onclick="openCake()">
+One Last Surprise 🎂
+</button>
+</div>
+
+<!-- BIRTHDAY CAKE -->
+
+<div id="cake" class="section">
+
+<h1>🎂 Happy Birthday!</h1>
+
+<p>Make a wish and blow out your candles!</p>
+
+<div class="candles" id="candles">
+<span class="flame">🔥</span>
+<span class="flame">🔥</span>
+<span class="flame">🔥</span>
+</div>
+
+<div class="cake">🎂</div>
+
+<p id="cakeMessage">
+Close your eyes, make a beautiful wish and blow out the candles!
+</p>
+
+<button id="blowButton" onclick="blowCandles()">
+🌬️ Blow the Candles
+</button>
+
+<div id="finalMessage" style="display:none">
+<h1>🎉 Happy Birthday My Love! ❤️</h1>
+<p>
+May all your wishes come true.
+May this new year bring you endless happiness.
+</p>
+<h2>Forever Wishing You The Best! 💙</h2>
+<div style="font-size:50px">🎉🎊💙✨</div>
+</div>
+
+</div>
+
+<div class="footer">
+Made With Love ❤️ | Our Little World
+</div>
+
+</div>
+
+<script>
+
+// SHOW PAGES
+
+function showSection(id){
+document.querySelectorAll(".section").forEach(section=>{
+section.classList.remove("active");
+});
+document.getElementById(id).classList.add("active");
+window.scrollTo(0,0);
+}
+
+function openLetter(){
+showSection("letter");
+}
+
+// MUSIC
+
+const songFile=document.getElementById("songFile");
+const song=document.getElementById("song");
+
+songFile.addEventListener("change",function(){
+
+const file=this.files[0];
+
+if(!file)return;
+
+song.pause();
+
+if(song.dataset.objectUrl){
+URL.revokeObjectURL(song.dataset.objectUrl);
+}
+
+const url=URL.createObjectURL(file);
+song.src=url;
+song.dataset.objectUrl=url;
+song.load();
+
+document.getElementById("songName").innerText=
+"Selected: "+file.name;
+
+});
+
+function openMusic(){
+showSection("music");
+}
+
+function playSong(){
+
+if(!song.src){
+alert("Please select an MP3 song first!");
+return;
+}
+
+song.play().catch(()=>{
+alert("Please click Play again to start the song.");
+});
+
+}
+
+function pauseSong(){
+song.pause();
+}
+
+// BALLOONS
+
+function openBalloons(){
+showSection("balloons");
+}
+
+let poppedCount=0;
+
+function popBalloon(number){
+
+const balloon=document.getElementById("b"+number);
+const wish=document.getElementById("w"+number);
+
+if(balloon.classList.contains("popped"))return;
+
+balloon.classList.add("popped");
+wish.style.display="block";
+
+poppedCount++;
+
+if(poppedCount===4){
+
+document.getElementById("balloonMessage").innerHTML=
+"✨ All your four wishes are sent to the universe! ❤️";
+
+document.getElementById("cakeNext").style.display="inline-block";
+
+}
+
+}
+
+// CAKE
+
+function openCake(){
+showSection("cake");
+}
+
+// BLOW CANDLES
+
+function blowCandles(){
+
+const flames=document.querySelectorAll(".flame");
+
+flames.forEach((flame,index)=>{
+
+setTimeout(()=>{
+
+flame.classList.remove("flame");
+flame.classList.add("smoke");
+flame.innerHTML="💨";
+
+},index*450);
+
+});
+
+document.getElementById("cakeMessage").innerHTML=
+"✨ Your candles are blown out! Make your wish come true!";
+
+document.getElementById("blowButton").style.display="none";
+
+setTimeout(()=>{
+
+document.getElementById("finalMessage").style.display="block";
+
+},1500);
+
+}
+
+</script>
+
+</body>
+</html>
